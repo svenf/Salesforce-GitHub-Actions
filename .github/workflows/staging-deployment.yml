@@ -1,9 +1,9 @@
 # Unique name for this workflow
-name: SFDX (validation on staging)
+name: SFDX (deployment to staging)
 
 # Definition when the workflow should run
 on:
-    pull_request:
+    push:
         branches:
             - staging
         paths:
@@ -11,7 +11,7 @@ on:
 
 # Jobs to be executed
 jobs:   
-    validation-on-staging:
+    deployment-to-staging:
         runs-on: ubuntu-latest
         steps:
             # Install Salesforce CLI
@@ -33,8 +33,8 @@ jobs:
             
             # Authenticate staging sandbox
             - name: 'Authenticate staging sandbox'
-              run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'           
-            
+              run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
+
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
-              run: 'sfdx force:source:deploy --sourcepath force-app --checkonly --testlevel RunLocalTests -u staging'
+              run: 'sfdx force:source:deploy --sourcepath force-app -u staging'
