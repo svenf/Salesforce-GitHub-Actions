@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX (validation on master)
+name: SFDX (validation on production)
 
 # Definition when the workflow should run
 on:
