@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX (deployment to production)
+name: SFDX (deployment to production)
 
 # Definition when the workflow should run
 on:
@@ -11,7 +11,7 @@ on:
 
 # Jobs to be executed
 jobs:   
-    deployment-on-master:
+    deployment-to-production:
         runs-on: ubuntu-latest
         steps:
             # Install Salesforce CLI
@@ -34,10 +34,6 @@ jobs:
             # Authenticate dev hub
             - name: 'Authenticate Dev Hub'
               run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
-            
-            # Lint Aura components
-            - name: 'Lint Aura components'
-              run: 'sfdx force:lightning:lint force-app/main/default/aura --exit'
 
             # Validate source to production
             - name: 'Validate source to production'
