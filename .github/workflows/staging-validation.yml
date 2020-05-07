@@ -50,4 +50,4 @@ jobs:
 
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
-              run: 'sfdx force:source:deploy --source force-app --checkonly --testlevel RunLocalTests -u staging'
+              run: 'sfdx force:source:deploy --sourcepath force-app --checkonly --testlevel RunLocalTests -u staging'
