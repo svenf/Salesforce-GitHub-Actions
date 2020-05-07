@@ -34,15 +34,6 @@ jobs:
             # Authenticate staging sandbox
             - name: 'Authenticate staging sandbox'
               run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
-          
-            # Include PMD
-            - name: Use PMD
-              #uses: sfdx-actions/setup-pmd@v1
-              uses: krukmat/setup-pmd@v0.4
-          
-            # Run PMD on the apex classes
-            - name: Run PMD on classes             
-              run: pmd -d force-app/main/default/classes -R pmd/apex_ruleset.xml -l apex
             
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
