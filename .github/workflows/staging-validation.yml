@@ -42,7 +42,7 @@ jobs:
           
             # Run PMD on the apex classes
             - name: Run PMD on classes             
-              run: pmd -d ./force-app/main/default/classes -R category/apex/design.xml -l apex
+              run: pmd -d force-app/main/default/classes -R pmd/apex_ruleset.xml -l apex
             
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
