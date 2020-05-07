@@ -35,8 +35,12 @@ jobs:
             - name: 'Authenticate staging sandbox'
               run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
           
+            # Include PMD
+            - name: Use PMD
+              uses: sfdx-actions/setup-pmd@v1
+          
             # Run PMD on the apex classes
-            - name: run-pmd
+            - name: Run PMD on classes             
               run: pmd -d ./force-app/main/default/classes -R category/apex/design.xml -f text
             
             # Validate source to staging sandbox
