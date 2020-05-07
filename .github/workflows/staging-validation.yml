@@ -35,6 +35,11 @@ jobs:
             - name: 'Authenticate Dev Hub'
               run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
             
+            # Store secret for staging
+            - name: 'Populate auth file with STAGING_SFDX_URL secret'
+              shell: bash
+              run: 'echo ${{ secrets.STAGING_SFDX_URL}} > ./STAGING_SFDX_URL.txt'
+            
             # Authenticate staging sandbox
             - name: 'Authenticate staging sandbox'
               run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
