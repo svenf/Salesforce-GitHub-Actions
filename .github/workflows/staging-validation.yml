@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX (staging)
+name: Salesforce DX (validation on staging)
 
 # Definition when the workflow should run
 on:
