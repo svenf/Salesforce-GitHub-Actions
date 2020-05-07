@@ -1,5 +1,5 @@
 # Unique name for this workflow
-name: Salesforce DX (deployment to staging)
+name: SFDX (deployment to staging)
 
 # Definition when the workflow should run
 on:
@@ -11,7 +11,7 @@ on:
 
 # Jobs to be executed
 jobs:   
-    deployment-on-staging:
+    deployment-to-staging:
         runs-on: ubuntu-latest
         steps:
             # Install Salesforce CLI
@@ -24,16 +24,7 @@ jobs:
                     
             # Checkout the code in the pull request            
             - name: 'Checkout source code'
-              uses: actions/checkout@v2
-
-            # Store secret for dev hub
-            - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
-              shell: bash
-              run: 'echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt'
-
-            # Authenticate dev hub
-            - name: 'Authenticate Dev Hub'
-              run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
+              uses: actions/checkout@v2            
             
             # Store secret for staging
             - name: 'Populate auth file with STAGING_SFDX_URL secret'
@@ -43,10 +34,6 @@ jobs:
             # Authenticate staging sandbox
             - name: 'Authenticate staging sandbox'
               run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
-            
-            # Lint Aura components
-            - name: 'Lint Aura components'
-              run: 'sfdx force:lightning:lint force-app/main/default/aura --exit'
 
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
