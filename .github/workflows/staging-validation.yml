@@ -3,7 +3,7 @@ name: Salesforce DX (staging)
 
 # Definition when the workflow should run
 on:
-    push:
+    pull_request:
         branches:
             - staging
         paths:
