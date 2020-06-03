@@ -38,3 +38,10 @@ jobs:
             # Validate source to staging sandbox
             - name: 'Validate source to staging sandbox'
               run: 'sfdx force:source:deploy --sourcepath force-app --checkonly --testlevel RunLocalTests -u staging'
+            
+            # Upload code coverage data
+            - name: 'Upload code coverage for Apex to Codecov.io'
+              uses: codecov/codecov-action@v1
+              with:
+                  flag: apex
+                  token: '2ba5fb58-25de-492d-886f-4467eb13d705' 
