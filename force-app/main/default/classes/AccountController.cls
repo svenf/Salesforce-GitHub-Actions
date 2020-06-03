@@ -4,4 +4,9 @@ public with sharing class AccountController {
         //Test2
         //test3
     }
+    
+    public void getInfo() {
+        String s = '';
+        String s2 = '';
+    }
 }
