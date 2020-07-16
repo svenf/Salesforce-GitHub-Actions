@@ -35,6 +35,10 @@ jobs:
             - name: 'Authenticate staging sandbox'
               run: 'sfdx force:auth:sfdxurl:store -f ./STAGING_SFDX_URL.txt -a staging -s'
 
-            # Validate source to staging sandbox
-            - name: 'Validate source to staging sandbox'
-              run: 'sfdx force:source:deploy --sourcepath force-app -u staging'
+            # Convert source to mdapi format
+            - name: 'Convert source to mdapi format'
+              run: 'sfdx force:source:convert --rootdir force-app --outputdir metadata_contents/ -n "My Package"'
+              
+            # Deploy metadata
+            - name: 'Deploy metadata'
+              run: 'sfdx force:mdapi:deploy --deploydir metadata_contents/'
